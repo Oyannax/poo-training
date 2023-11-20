@@ -1,3 +1,59 @@
+<?php
+class Teacher {
+    private string $lastname;
+    private string $firstname;
+    private array $subjects;
+    private string $school;
+
+    public function __construct(string $lastname, string $firstname, array $subjects = [], string $school = '') {
+        $this->lastname = $lastname;
+        $this->firstname = $firstname;
+        $this->subjects = $subjects;
+        $this->school = $school;
+    }
+
+    public function addSubject(string $subject):void {
+        $this->subjects[] = $subject;
+    }
+
+    public function deleteSubject(int $index):void {
+        unset($this->subjects[$index]);
+    }
+
+    public function introduce():string {
+        return "Bonjour, je m'appelle {$this->firstname} {$this->lastname} et j'enseigne à l'école {$this->school} les matières suivantes : ".implode(", ", $this->subjects).".";
+    }
+
+    public function getLastname():string {
+        return $this->lastname;
+    }
+    public function setLastname(string $lastname):void {
+        $this->lastname = $lastname;
+    }
+
+    public function getFirstname():string {
+        return $this->firstname;
+    }
+    public function setFirstname(string $firstname):void {
+        $this->firstname = $firstname;
+    }
+
+    public function getSubjects():array {
+        return $this->subjects;
+    }
+    public function setSubjects(array $subjects):void {
+        $this->subjects = $subjects;
+    }
+
+    public function getSchool():string {
+        return $this->school;
+    }
+    public function setSchool(string $school):void {
+        $this->school = $school;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +92,12 @@
                 Créer 2 professeurs différents.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                $teacher1 = new Teacher("Truc", "Machin", ["Tic", "Tac", "Toc"], "Jean Papon");
+                $teacher2 = new Teacher("Bidule", "Chouette", ["Lo", "Li", "Lol"], "Jean Puy");
+
+                var_dump($teacher1, $teacher2);
+                ?>
             </div>
         </section>
         
@@ -52,7 +113,13 @@
                 Afficher les écoles des 2 professeurs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                $teacher1->setSchool("Jean Puy");
+                $teacher2->setSchool("Jean Papon");
+
+                var_dump($teacher1->getSchool());
+                var_dump($teacher2->getSchool());
+                ?>
             </div>
         </section>
         
@@ -66,7 +133,15 @@
                 Tester l'ajout, la suppression et l'affichage sur chacun des profs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                $teacher1->addSubject("Bim");
+                $teacher2->addSubject("Bam");
+                var_dump($teacher1, $teacher2);
+
+                $teacher1->deleteSubject(0);
+                $teacher2->deleteSubject(0);
+                var_dump($teacher1, $teacher2);
+                ?>
             </div>
         </section>
 
@@ -81,7 +156,10 @@
                 Afficher la phrase de présentation des 2 profs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                echo $teacher1->introduce();
+                echo $teacher2->introduce();
+                ?>
             </div>
         </section>
 

@@ -1,3 +1,10 @@
+<?php
+spl_autoload_register();
+
+// use App\Education\People;
+use App\Education\Student;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,58 +44,8 @@
             </p>
             <div class="exercice-sandbox">
                 <?php
-                class Student {
-                    private string $lastname;
-                    private string $firstname;
-                    private DateTime $birthdate;
-                    private int $age;
-                    private int $grade;
-
-                    public function __construct(string $lastname, string $firstname, DateTime $birthdate, int $grade) {
-                        $this->lastname = $lastname;
-                        $this->firstname = $firstname;
-                        $this->birthdate = $birthdate;
-                        $this->grade = $grade;
-                    }
-
-                    public function getLastName():string {
-                        return $this->lastname;
-                    }
-                    public function setLastName(string $lastname):void {
-                        $this->lastname = $lastname;
-                    }
-
-                    public function getFirstName():string {
-                        return $this->firstname;
-                    }
-                    public function setFirstName(string $firstname):void {
-                        $this->firstname = $firstname;
-                    }
-
-                    public function getBirthdate():DateTime {
-                        return $this->birthdate;
-                    }
-                    public function setBirthdate(DateTime $birthdate):void {
-                        $this->birthdate = $birthdate;
-                    }
-
-                    public function getAge(DateTime $birthdate) {
-                        if (isset($this->birthdate)) {
-                            $interval = $birthdate->diff(new DateTime('now'));
-                            return $this->age = $interval->format('%y');
-                        }
-                    }
-
-                    public function getGrade():int {
-                        return $this->grade;
-                    }
-                    public function setGrade(int $grade):void {
-                        $this->grade = $grade;
-                    }
-                }
-
-                $student1 = new Student("James", "Noah", new DateTime("2012-08-31"), 7);
-                $student2 = new Student("Jordan", "Matt", new DateTime("2006-11-20"), 13);
+                $student1 = new Student("James", "Noah", new DateTime("2012-08-31"), 7, '');
+                $student2 = new Student("Jordan", "Matt", new DateTime("2006-11-20"), 13, '');
 
                 var_dump($student1);
                 var_dump($student2);
